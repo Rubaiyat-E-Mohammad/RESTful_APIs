@@ -1,0 +1,111 @@
+swagger: "2.0"
+info:
+  description: USER API
+  version: 1.0.0
+  title: User API
+host: localhost:3000
+basePath: /api/v1
+schemes:
+  - http
+tags: 
+  - name: USER Details
+    description: Display Details of All users
+  
+paths:
+  /users:
+    get:
+      tags:
+        - Get All users
+      summary: Retrieve all users
+      security: []
+      responses:
+        '200':
+          description: Successful Operation
+  
+    post:
+      tags:
+        - Create new user
+      summary: Create a new user
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful Operation
+      
+  /users/{id}:
+    get:
+      tags:
+        - Get User By Id
+      summary: Retrieve Specific User By Id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+          
+      responses:
+        '200':
+          description: Succesful Operation
+          
+    put:
+      tags:
+        - Update User By Id
+      summary: Update Specific User By Id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          
+      responses:
+        '200':
+          description: Succesful Operation
+      
+    delete:
+      tags:
+        - Delete User By Id
+      summary: Delete User By Id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+          
+      responses:
+        '200':
+          description: Succesful Operation
+          
+  /users/name/{name}:
+    get:
+      tags:
+        - Get User By Name
+      summary: Retrieve Specific User By Name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+          
+      responses:
+        '200':
+          description: Succesful Operation
+          
+    delete:
+      tags:
+        - Delete User By Name
+      summary: Delete User By Name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+          
+      responses:
+        '200':
+          description: Succesful Operation
