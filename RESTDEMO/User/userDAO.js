@@ -1,7 +1,22 @@
 const fs = require('fs')
+const users = require('./userAuth.json')
+
+const findUser = (email, done)=>{
+    const userFetched = users.filter((usr)=> usr.email === email)[0]
+    if(userFetched == null){
+        return done(err)
+    }
+    return done(undefined, userFetched)
+}
+
+const registerUser = (userData, done)=>{
+    users.push(userData)
+    fs.writeFileSync('./User/userAuth.json', JSON.stringify(users))
+    return done(undefined, userData)
+}
 
 const getUsers = (done)=>{
-    fs.readFile('/Users/rubaiyatemohammad/skills/REST API/RestDemo/User/users.json', (err, fileContent)=>{
+    fs.readFile('./User/users.json', (err, fileContent)=>{
         if(err){
             return done("Encountered error")
         }
@@ -11,7 +26,7 @@ const getUsers = (done)=>{
 }
 
 const getUsersById = (userId, done)=>{
-    fs.readFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', (err, fileContent)=>{
+    fs.readFile('./User/users.json', (err, fileContent)=>{
         if(err){
             return done("Error encountered")
         }
@@ -25,7 +40,7 @@ const getUsersById = (userId, done)=>{
 }
 
 const getUsersByName = (username, done)=>{
-    fs.readFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', (err, fileContent)=>{
+    fs.readFile('./User/users.json', (err, fileContent)=>{
         if(err){
             return done("Error encountered")
         }
@@ -39,7 +54,7 @@ const getUsersByName = (username, done)=>{
 }
 
 const putUserDetails = (userId,username, done)=>{
-    fs.readFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', (err, fileContent)=>{
+    fs.readFile('./User/users.json', (err, fileContent)=>{
         if(err){
             return done("Error encountered")
         }
@@ -49,7 +64,7 @@ const putUserDetails = (userId,username, done)=>{
             return done('No user found')
         }
         userData[index].username = username
-        fs.writeFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', JSON.stringify(userData),(err, updatedContent)=>{
+        fs.writeFile('./User/users.json', JSON.stringify(userData),(err, updatedContent)=>{
             if(err){
                 return done("updating error")
             }
@@ -59,7 +74,7 @@ const putUserDetails = (userId,username, done)=>{
 }
 
 const addNewUser = (newUser, done)=>{
-    fs.readFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', (err, fileContent)=>{
+    fs.readFile('./User/users.json', (err, fileContent)=>{
         if(err){
             return done("Error encountered")
         }
@@ -70,7 +85,7 @@ const addNewUser = (newUser, done)=>{
             userId: newUserId
         }
         userData.push(userToAdd);
-        fs.writeFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', JSON.stringify(userData),(err, updatedContent)=>{
+        fs.writeFile('./User/users.json', JSON.stringify(userData),(err, updatedContent)=>{
             if(err){
                 return done("updating error")
             }
@@ -80,13 +95,13 @@ const addNewUser = (newUser, done)=>{
 }
 
 const deleteUserById = (userId, done)=>{
-    fs.readFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', (err, fileContent)=>{
+    fs.readFile('./User/users.json', (err, fileContent)=>{
         if(err){
             return done("Error encountered")
         }
         let userData = JSON.parse(fileContent)
         const updatedUser = userData.filter(usr=> usr.userId !== parseInt(userId))
-        fs.writeFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', JSON.stringify(updatedUser),(err, updatedContent)=>{
+        fs.writeFile('./User/users.json', JSON.stringify(updatedUser),(err, updatedContent)=>{
             if(err){
                 return done("updating error")
             }
@@ -96,13 +111,13 @@ const deleteUserById = (userId, done)=>{
 }
 
 const deleteUserByName = (username, done)=>{
-    fs.readFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', (err, fileContent)=>{
+    fs.readFile('./User/users.json', (err, fileContent)=>{
         if(err){
             return done("Error encountered")
         }
         let userData = JSON.parse(fileContent)
         const updatedUser = userData.filter(usr=> usr.username != username)
-        fs.writeFile('/Users/rubaiyatemohammad/skills/REST API/RESTDEMO/User/users.json', JSON.stringify(updatedUser),(err, updatedContent)=>{
+        fs.writeFile('./User/users.json', JSON.stringify(updatedUser),(err, updatedContent)=>{
             if(err){
                 return done("updating error")
             }
@@ -111,6 +126,16 @@ const deleteUserByName = (username, done)=>{
     })
 }
 
-module.exports = {getUsers, getUsersById, getUsersByName, putUserDetails, addNewUser, deleteUserById, deleteUserByName}
+module.exports = {
+    getUsers,
+    getUsersById,
+    getUsersByName,
+    putUserDetails,
+    addNewUser,
+    deleteUserById,
+    deleteUserByName,
+    findUser,
+    registerUser
+}
 
 

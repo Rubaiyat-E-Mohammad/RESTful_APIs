@@ -1,5 +1,13 @@
 const userDAO = require('./userDAO')
 
+const findUser = (email, done)=>{
+    userDAO.findUser(email,done)
+}
+
+const registerUser = (userData, done)=>{
+    userDAO.registerUser(userData,done)
+}
+
 const getUsers = (done)=>{
     userDAO.getUsers(done)
 }
@@ -23,7 +31,19 @@ const addNewUser = (newUser, done)=>{
 const deleteUserById = (userId, done)=>{
     userDAO.deleteUserById(userId, done)
 }
+
 const deleteUserByName = (username, done)=>{
     userDAO.deleteUserByName(username, done)
 }
-module.exports = {getUsers, getUsersById, getUsersByName, putUserDetails, addNewUser, deleteUserById, deleteUserByName}
+
+module.exports = {
+    getUsers,
+    getUsersById,
+    getUsersByName,
+    putUserDetails,
+    addNewUser,
+    deleteUserById,
+    deleteUserByName,
+    findUser,
+    registerUser
+}

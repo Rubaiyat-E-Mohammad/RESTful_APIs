@@ -3,7 +3,26 @@ const userController = require('./userController');
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get('/', (req,res)=>{
+  try{
+    const userData = req.claims
+    console.log(userData)
+    if(!userData.email){
+      return res.status(400).send('User emai not available')
+    }
+    userController.findUser(userData.email, (err,result)=>{
+      if(err){
+        return res.status(400).send('Error getting the user', err)
+      }else{
+        return res.status(200).send(result)
+      }
+    })
+  }catch(err){
+    return res.status(500).send({error:'unexpected error occured'})
+  }
+})
+
+router.get("/all", (req, res) => {
   try {
     userController.getUsers((err, results) => {
       if (err) {
