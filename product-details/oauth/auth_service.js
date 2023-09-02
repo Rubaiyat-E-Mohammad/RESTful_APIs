@@ -5,7 +5,7 @@ const getGITHubAccessToken = (code, done)=>{
     const body = {
         client_id: config.CLIENT_ID,
         client_secret: config.CLIENT_SECRET,
-        code: code
+        code
     }
     const opts = { headers: { accept: 'application/json'}}
 
