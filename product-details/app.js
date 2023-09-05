@@ -8,7 +8,7 @@ const LoggerMiddleware = (req, res, next) => {
   console.log(`Logged ${req.url} ${req.method}`)
   next()
 }
-app.use(express.static('./static'))
+app.use(express.static('static'))
 app.use(LoggerMiddleware)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
