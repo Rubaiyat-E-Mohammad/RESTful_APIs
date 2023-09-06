@@ -17,6 +17,7 @@ router.get('/callback',(req,res)=>{
         } else {
                 // Redirect the user to the authorized page with the token as a query parameter
                 res.redirect(`/welcome.html?token=${token}`);
+                
         }
 })
 })

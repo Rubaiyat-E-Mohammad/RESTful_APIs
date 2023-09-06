@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 })
 app.use('/oauth',oauthRouter)
 
-app.use("/products",oauthRouter, productsRouter)
+app.use("/products", productsRouter)
 app.use((req, res, next) => {
   return res.status(404).send('Resource not found')
 });
