@@ -13,12 +13,12 @@
 
 <body class="bg-dark justify-content-center align-content-center d-flex m-0">
   <div class="main bg-light rounded-3 mt-5">
-    <div class="">
-      <img src="OIP.jpg" alt="Avatar" class="avatar mt-5 m-lg-4">
+    <div class="mt-5 m-lg-4 align-content-center d-flex justify-content-center">
+      <img src="OIP.png" alt="Avatar" class="avatar">
     </div>
 
     <div class="text-center m-1">
-      <h1><span class="party-popper text-dark"></span><br />Awesome!<br />You are authorized🔓</h1>
+      <h1>Great! You are authorized🔓</h1>
     </div>
 
     <div class="text-center mt-4 mb-4">
@@ -28,6 +28,14 @@
     <form id="myForm" method="GET" class="text-center m-1">
       <label>Search Products By Id</label>
       <input type="text" id="productId" placeholder="Enter Product ID">
+      <input type="submit" value="Submit" class="btn btn-dark">
+    </form>
+    <form id="myForm" method="POST" class="text-center m-1" action="/products/">
+      <label>Post Products</label>
+      <input type="text" name="name" placeholder="Enter Name">
+      <input type="text" name="description" placeholder="Enter Description">
+      <input type="number" name="price" placeholder="Enter Price">
+      <input type="number" name="quantity" placeholder="Enter Quantity">
       <input type="submit" value="Submit" class="btn btn-dark">
     </form>
 
