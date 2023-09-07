@@ -14,7 +14,7 @@
 <body class="bg-dark justify-content-center align-content-center d-flex m-0">
   <div class="main bg-light rounded-3 mt-5">
     <div class="">
-      <img src="github.png" alt="Avatar" class="avatar mt-5 m-lg-4">
+      <img src="OIP.jpg" alt="Avatar" class="avatar mt-5 m-lg-4">
     </div>
 
     <div class="text-center m-1">
@@ -24,9 +24,28 @@
     <div class="text-center mt-4 mb-4">
       <a class="btn btn-dark rounded-pill" href="/products/">Get All Products</a>
     </div>
-    
+
+    <form id="myForm" method="GET" class="text-center m-1">
+      <label>Search Products By Id</label>
+      <input type="text" id="productId" placeholder="Enter Product ID">
+      <input type="submit" value="Submit" class="btn btn-dark">
+    </form>
+
   </div>
-  
+    <script>
+    const form = document.getElementById('myForm');
+    const productIdInput = document.getElementById('productId');
+
+    // Initial form action
+    form.action = '/products/'; // Default action
+
+    // Add an input event listener to the product ID input field
+    productIdInput.addEventListener('input', function() {
+      const productId = productIdInput.value.trim();
+      form.action = '/products/' + productId; // Update form action based on user input
+      console.log('Form action updated to:', form.action);
+    });
+  </script>
 </body>
 
 </html>
