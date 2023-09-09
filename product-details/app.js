@@ -4,6 +4,7 @@ const config = require("./config")
 const app = express()
 const productsRouter = require("./src")
 const oauthRouter = require('./oauth')
+const multer = require('multer')
 const LoggerMiddleware = (req, res, next) => {
   console.log(`Logged ${req.url} ${req.method}`)
   next()
@@ -19,6 +20,23 @@ app.get('/',(req,res)=>{
 app.use('/oauth',oauthRouter)
 
 app.use("/products", productsRouter)
+
+//file upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/')
+  },
+  filename: function (req, file, cb) {
+    const name = Date.now() + '-' + file.originalname
+    cb(null, name)
+  }
+})
+const upload = multer({ storage: storage })
+
+app.post('/register',upload.single('image') , (req, res)=>{
+  res.status(200).send('File is uploaded')
+})
+
 app.use((req, res, next) => {
   return res.status(404).send('Resource not found')
 });
