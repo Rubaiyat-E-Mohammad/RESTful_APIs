@@ -1,7 +1,7 @@
 const fs = require('fs')
-
+const p = 'T46888468'
 const mongoose = require('mongoose')
-mongoose.connect("mongodb+srv://rubaiyatemohammad:T46888468@rubaiyatemohammad.xkea72m.mongodb.net/productsDetails?retryWrites=true&w=majority")
+mongoose.connect(`mongodb+srv://rubaiyatemohammad:${p}@rubaiyatemohammad.xkea72m.mongodb.net/productsDetails?retryWrites=true&w=majority`)
   .then(() => console.log("db is connected"))
   .catch((err) => console.log(err))
 const productsSchema = new mongoose.Schema({
