@@ -1,7 +1,6 @@
 const axios = require('axios');
 const config = require("../config");
 
-// function to get the access token
 function getGithubAccessToken(code, done) {
     const data = {
         client_id: config.CLIENT_ID,
@@ -13,7 +12,6 @@ function getGithubAccessToken(code, done) {
             Accept: 'application/json'
         }
     }
-    // Make a POST request to exchange the code for an access token
     axios
         .post('https://github.com/login/oauth/access_token', data, opts)
         .then(response => {
@@ -25,11 +23,8 @@ function getGithubAccessToken(code, done) {
         });
 }
 
-
-// Function to get the user profile for the token provided
 function getAccessTokenOfUser(token, done) {
-    // Github APIs are authenticated and we have to share the token in headers
-    // The token is same as what we recieved in the previous step
+
     const headers = {
         Authorization: `token ${token}`
     };

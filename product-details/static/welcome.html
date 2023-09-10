@@ -30,7 +30,7 @@
       <input type="text" id="productId" placeholder="Enter Product ID">
       <input type="submit" value="Submit" class="btn btn-dark">
     </form>
-    <form id="myForm" method="POST" class="text-center m-1" action="/products/">
+    <form method="POST" class="text-center m-1" action="/products/">
       <label>Post Products</label>
       <input type="text" name="name" placeholder="Enter Name">
       <input type="text" name="description" placeholder="Enter Description">
@@ -46,17 +46,15 @@
     </form>
 
   </div>
-    <script>
+  <script>
     const form = document.getElementById('myForm');
     const productIdInput = document.getElementById('productId');
 
-    // Initial form action
-    form.action = '/products/'; // Default action
+    form.action = '/products/';
 
-    // Add an input event listener to the product ID input field
-    productIdInput.addEventListener('input', function() {
+    productIdInput.addEventListener('input', function () {
       const productId = productIdInput.value.trim();
-      form.action = '/products/' + productId; // Update form action based on user input
+      form.action = '/products/' + productId;
       console.log('Form action updated to:', form.action);
     });
   </script>

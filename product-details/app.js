@@ -5,6 +5,9 @@ const app = express()
 const productsRouter = require("./src")
 const oauthRouter = require('./oauth')
 const multer = require('multer')
+
+
+
 const LoggerMiddleware = (req, res, next) => {
   console.log(`Logged ${req.url} ${req.method}`)
   next()
@@ -14,14 +17,13 @@ app.use(LoggerMiddleware)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.get('/',(req,res)=>{
-  return res.sendFile(path.join(__dirname,'./static/index.html'))
+app.get('/', (req, res) => {
+  return res.sendFile(path.join(__dirname, './static/index.html'))
 })
-app.use('/oauth',oauthRouter)
+app.use('/oauth', oauthRouter)
 
 app.use("/products", productsRouter)
 
-//file upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads/')
@@ -33,7 +35,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-app.post('/register',upload.single('image') , (req, res)=>{
+app.post('/register', upload.single('image'), (req, res) => {
   res.status(200).send('File is uploaded')
 })
 
