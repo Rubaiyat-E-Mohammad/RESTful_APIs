@@ -7,11 +7,26 @@ mongoose.connect(`mongodb+srv://rubaiyatemohammad:${p}@rubaiyatemohammad.xkea72m
   .then(() => console.log("db is connected"))
   .catch((err) => console.log(err))
 const productsSchema = new mongoose.Schema({
-  id: Number,
-  name: String,
-  description: String,
-  price: Number,
-  quantity: Number
+  id: {
+    type: Number,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  quantity: {
+    type: Number,
+    required: true
+  }
 })
 const Product = mongoose.model("products", productsSchema)
 

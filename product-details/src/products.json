@@ -82,5 +82,12 @@
         "price": 55000,
         "quantity": 50,
         "id": 12
+    },
+    {
+        "name": "Ring Light",
+        "description": "Used for lighting",
+        "price": "1200",
+        "quantity": "143",
+        "id": 13
     }
 ]
