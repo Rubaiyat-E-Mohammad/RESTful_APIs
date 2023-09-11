@@ -6,8 +6,6 @@ const productsRouter = require("./src")
 const oauthRouter = require('./oauth')
 const multer = require('multer')
 
-
-
 const LoggerMiddleware = (req, res, next) => {
   console.log(`Logged ${req.url} ${req.method}`)
   next()

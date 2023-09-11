@@ -1,4 +1,6 @@
 const fs = require('fs')
+
+
 const p = 'T46888468'
 const mongoose = require('mongoose')
 mongoose.connect(`mongodb+srv://rubaiyatemohammad:${p}@rubaiyatemohammad.xkea72m.mongodb.net/productsDetails?retryWrites=true&w=majority`)
